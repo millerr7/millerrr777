@@ -1,0 +1,818 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "❄MeepCity❄",
+   Icon = 10730387329, 
+   LoadingTitle = "DestroyMeep V3",
+   LoadingSubtitle = "Carregando...",
+   Theme = {Default},
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false,
+
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil,
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = true,
+      Invite = "jbbg_777",
+      RememberJoins = true
+   },
+
+   KeySystem = true,
+   KeySettings = {
+      Title = "DestroyMeep V3",
+      Subtitle = "Key System",
+      Note = ".gg/valkyres",
+      FileName = "examplekey",
+      SaveKey = false,
+      GrabKeyFromSite = true,
+      Key = {"valkyresthebest"}
+   }
+})
+
+local MainTab = Window:CreateTab("Meepcity", 105651797171702)-- Título, Imagem
+local MainSection = MainTab:CreateSection("Meepcity")
+
+Rayfield:Notify({
+   Title = "Miller X Jhon",
+   Content = "",
+   Duration = 6.5,
+   Image = nil,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Itens fora de mercado",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/yLegendzz/Scripts/main/Meepcity'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Falsificar Plus/Boombox/Candypack",
+   Callback = function()
+      local player = game.Players.LocalPlayer
+
+-- Falsificar PLUS/BOOMBOX/CANDYPACK
+local function falsificarPlusBoomBoxCandyPack(valor)
+    if valor then
+        player:SetAttribute("PLUS", true)
+        player:SetAttribute("BoomBox", true)
+        player:SetAttribute("CandyPack", true)
+    else
+        player:SetAttribute("PLUS", false)
+        player:SetAttribute("BoomBox", false)
+        player:SetAttribute("CandyPack", false)
+    end
+end
+
+-- Chamar a função diretamente com o valor desejado
+falsificarPlusBoomBoxCandyPack(true)  -- Para ativar
+-- falsificarPlusBoomBoxCandyPack(false) -- Para desativar
+   end,
+})
+
+local RunService = game:GetService("RunService")
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+local TPWalkEnabled = false -- Controle de ativação
+local TPWalkConnection = nil -- Conexão para o loop
+local TPWalkSpeed = 10 -- Velocidade inicial
+
+-- Atualiza o personagem caso ele seja recriado
+player.CharacterAdded:Connect(function(newChar)
+    char = newChar
+    humanoidRootPart = char:WaitForChild("HumanoidRootPart")
+end)
+
+-- Função para iniciar/parar o TPWalk
+local function toggleTPWalk(enabled)
+    if TPWalkConnection then
+        TPWalkConnection:Disconnect()
+        TPWalkConnection = nil
+    end
+
+    if enabled and TPWalkSpeed > 0 then
+        TPWalkConnection = RunService.Stepped:Connect(function()
+            if char and humanoidRootPart and char:FindFirstChild("Humanoid") then
+                local moveDirection = char.Humanoid.MoveDirection
+                if moveDirection.Magnitude > 0 then
+                    humanoidRootPart.CFrame = humanoidRootPart.CFrame + (moveDirection * TPWalkSpeed * 0.1)
+                end
+            end
+        end)
+    end
+end
+
+-- Slider para ajustar a velocidade do TPWalk
+local Slider = MainTab:CreateSlider({
+    Name = "Velocidade de TPWalk",
+    Range = {0, 50}, -- Inclui 0 para desativar o movimento
+    Increment = 1,
+    Suffix = " studs",
+    CurrentValue = TPWalkSpeed, -- Velocidade inicial
+    Flag = "TPWalkSpeed",
+    Callback = function(value)
+        TPWalkSpeed = value
+        if TPWalkEnabled then
+            toggleTPWalk(true) -- Atualiza o movimento caso esteja ativado
+        end
+    end,
+})
+
+-- Botão para ativar/desativar o TPWalk
+local Button = MainTab:CreateButton({
+    Name = "Ativar/Desativar TPWalk",
+    Callback = function()
+        TPWalkEnabled = not TPWalkEnabled -- Inverte o estado atual
+        toggleTPWalk(TPWalkEnabled)
+        Rayfield:Notify({
+            Title = "TPWalk",
+            Content = TPWalkEnabled and "Ativado!" or "Desativado!",
+            Duration = 5,
+        })
+    end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Synolope",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/MeepCity-MeepCity-OP-GUI-(TONS-OF-OP-FEATURES)-1629'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "MeepCracked",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/MeepCity-Meepcity-cracked-6349'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Girar caixa",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/XiMMHZ2K'))()
+   end,
+})
+
+local MainTab = Window:CreateTab("Destroy")
+local MainSection = MainTab:CreateSection("Destroy")
+
+local Button = MainTab:CreateButton({
+   Name = "LAG",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/AWurbmb7'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Dar snowball para outros",
+   Callback = function()
+      local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local isRunning = false
+
+local function equipItem()
+    local equipArgs = {201, 932}
+    local success, result = pcall(function()
+        ReplicatedStorage:WaitForChild("Connection"):InvokeServer(unpack(equipArgs))
+    end)
+    if not success then
+        warn("Equip item failed:", result)
+    end
+end
+
+local function unEquip()
+    local args = {202}
+    pcall(function()
+        ReplicatedStorage:WaitForChild("Connection"):InvokeServer(unpack(args))
+    end)
+end
+
+local function hasItemEquipped(player)
+    local equippedItems = player:FindFirstChild("Backpack"):FindFirstChild(932)
+    return equippedItems ~= nil
+end
+
+local function giveItemToAllPlayers()
+    for _, player in pairs(Players:GetPlayers()) do
+        if not hasItemEquipped(player) then
+            local giveArgs = {player.UserId, 932}
+            local success, result = pcall(function()
+                ReplicatedStorage:WaitForChild("FunctionConnections"):WaitForChild("RequestSendPassAlongActionItem"):InvokeServer(unpack(giveArgs))
+            end)
+            if not success then
+                warn("Give item failed for " .. player.Name .. ":", result)
+            end
+        end
+    end
+end
+
+-- Chamar a função para executar tudo diretamente
+if not isRunning then
+    isRunning = true
+
+    equipItem()
+    giveItemToAllPlayers()
+    unEquip()
+
+    isRunning = false
+else
+    wait(1)
+end
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Tacar snowball em todos",
+   Callback = function()
+      local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
+local ThrowItemEvent = ReplicatedStorage.EventConnections.ThrowItem
+local RunService = game:GetService("RunService")
+
+local function getRandomPlayer()
+    local allPlayers = Players:GetPlayers()
+    local randomIndex = math.random(1, #allPlayers)
+    local randomPlayer = allPlayers[randomIndex]
+    if randomPlayer and randomPlayer.Character and randomPlayer.Character:FindFirstChild("HumanoidRootPart") then
+        return randomPlayer
+    else
+        return nil
+    end
+end
+
+local function throwAtRandomPlayer()
+    local randomPlayer = getRandomPlayer()
+    if randomPlayer then
+        local targetPosition = randomPlayer.Character.HumanoidRootPart.Position
+        local args = {
+            [1] = string.format("[932,[\"%s\",\"%s\",\"%s\"],[\"%s\",\"%s\",\"%s\"],[\"%s\",\"%s\",\"%s\"],75]",
+                tostring(targetPosition.X), tostring(targetPosition.Y), tostring(targetPosition.Z),
+                tostring(targetPosition.X + 3), tostring(targetPosition.Y + 3), tostring(targetPosition.Z + 3),
+                tostring(targetPosition.X - 3), tostring(targetPosition.Y - 3), tostring(targetPosition.Z - 3))
+        }
+        ThrowItemEvent:FireServer(unpack(args))
+    end
+end
+
+-- Executar a função de lançar a bola de neve para um jogador aleatório sem interação
+RunService.Heartbeat:Connect(function()
+    for _ = 1, 1 do
+        throwAtRandomPlayer()
+    end
+end)
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Dar babymeep para outros",
+   Callback = function()
+      local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local isRunning = false
+
+local function equipItem()
+    local equipArgs = {201, 1232}
+    local success, result = pcall(function()
+        ReplicatedStorage:WaitForChild("Connection"):InvokeServer(unpack(equipArgs))
+    end)
+    if not success then
+        warn("Equip item failed:", result)
+    end
+end
+
+local function unEquip()
+    local args = {202}
+    pcall(function()
+        ReplicatedStorage:WaitForChild("Connection"):InvokeServer(unpack(args))
+    end)
+end
+
+local function hasItemEquipped(player)
+    local equippedItems = player:FindFirstChild("Backpack"):FindFirstChild(1232)  -- Corrigido para o item correto
+    return equippedItems ~= nil
+end
+
+local function giveItemToAllPlayers()
+    for _, player in pairs(Players:GetPlayers()) do
+        if not hasItemEquipped(player) then
+            local giveArgs = {player.UserId, 1232}  -- Corrigido para o item correto
+            local success, result = pcall(function()
+                ReplicatedStorage:WaitForChild("FunctionConnections"):WaitForChild("RequestSendPassAlongActionItem"):InvokeServer(unpack(giveArgs))
+            end)
+            if not success then
+                warn("Give item failed for " .. player.Name .. ":", result)
+            end
+        end
+    end
+end
+
+-- Executa a função sem interação do usuário
+if not isRunning then
+    isRunning = true
+
+    equipItem()
+    giveItemToAllPlayers()
+    unEquip()
+
+    isRunning = false
+else
+    wait(1)
+end
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Fogos",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/PWaEZitv'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Fogos V2 PING+",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/h29pyd3t'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Fogos V3 PING++",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/49JdxKSJ'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Spam fogos",
+   Callback = function()
+      local spawnFirework = true
+local lastFireworkTime = 0
+local fireworkCooldown = 2 -- Defina o tempo de cooldown entre os fogos de artifício
+local fireworkConnection
+
+-- Conecta-se ao Heartbeat do RunService para execução contínua
+fireworkConnection = game:GetService("RunService").Heartbeat:Connect(function()
+    if spawnFirework and tick() - lastFireworkTime >= fireworkCooldown then
+        game:GetService("ReplicatedStorage").Connection:InvokeServer(202, 1310)
+        game:GetService("ReplicatedStorage").Connection:InvokeServer(201, 1310, {})
+        game:GetService("ReplicatedStorage").ConnectionEvent:FireServer(210)
+        lastFireworkTime = tick()
+    end
+end)
+
+-- O script já está configurado para rodar automaticamente ao ser executado.
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Spawn varas no céu",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/y9SUYpA7'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Spawn varas no céu V2 +LAG",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/5FPScAj7'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Varas pelo mapa (Perto)",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/bzmLUW5H'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Varas pelo mapa (Longe)",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/dtAfU0My'))()
+   end,
+})
+
+local MainTab = Window:CreateTab("Spam + Plantar")
+local MainSection = MainTab:CreateSection("Spam + Plantar")
+
+local Button = MainTab:CreateButton({
+   Name = "Spam Balão",
+   Callback = function()
+      local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Início automático do processo de espalhar balões
+local spawnAllBalloons = true
+
+task.spawn(function()
+    while spawnAllBalloons do
+        local args = {
+            [1] = 201,
+            [2] = nil,  -- ID do balão será definido em cada iteração
+            [3] = {}
+        }
+        local args2 = {
+            [1] = 202
+        }
+
+        -- IDs dos balões a serem espalhados
+        local balloonIDs = {1311, 1312, 1313, 1314, 1315, 1039}
+
+        -- Executar a criação e remoção de cada balão
+        for _, id in ipairs(balloonIDs) do
+            args[2] = id
+            pcall(function()
+                ReplicatedStorage.Connection:InvokeServer(unpack(args))
+                ReplicatedStorage.Connection:InvokeServer(unpack(args2))
+            end)
+        end
+
+        task.wait(0.1)  -- Intervalo entre cada ciclo
+    end
+end)
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Plantar Frango",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/dy1gTsr1"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Loop plantar frango",
+   Callback = function()
+     loadstring(game:HttpGet("https://pastebin.com/raw/8eMe1Da3"))() 
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Plantar bolo",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/m2QftL55"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Loop plantar bolo",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/m2QftL55"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Plantar brownie",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/qebwvWSE"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Loop plantar brownie",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/P2iyKr3m"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Plantar pizza",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/Khamf1tU"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Loop plantar pizza",
+   Callback = function()
+      loadstring(game:HttpGet("https://pastebin.com/raw/zFRtJdFK"))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Plantar prato",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/2F7jVJ5x'))()
+   end,
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- Função para converter Color3 para uma tabela com valores de 0-255
+local function colorToTable(clr)
+    return {tostring(clr.R * 255), tostring(clr.G * 255), tostring(clr.B * 255)}
+end
+
+-- Função que extrai os dados do humanoide
+local function ExtractData(humdes)
+    local ava = {}
+
+    -- Copiar os dados de escala
+    for _, v in pairs({"WidthScale", "HeightScale", "DepthScale", "BodyTypeScale", "ProportionScale", "HeadScale"}) do
+        ava[v] = humdes[v]
+    end
+
+    -- Copiar a configuração do corpo (Face, Head, Arms, Legs, etc)
+    for _, v in pairs({"Face", "Head", "LeftArm", "RightArm", "LeftLeg", "RightLeg", "Torso"}) do
+        ava[v] = humdes[v]
+    end
+
+    -- Copiar as cores das partes do corpo
+    for _, v in pairs({"HeadColor", "LeftArmColor", "RightArmColor", "LeftLegColor", "RightLegColor", "TorsoColor"}) do
+        ava[v] = colorToTable(humdes[v]) -- Convertendo a cor para tabela RGB (0-255)
+    end
+
+    -- Copiar roupas (camisa, calça, etc)
+    for _, v in pairs({"GraphicTShirt", "Shirt", "Pants"}) do
+        ava[v] = humdes[v]
+    end
+
+    -- Copiar animações (Idle, Run, Jump, etc)
+    for _, v in pairs({"IdleAnimation", "RunAnimation", "JumpAnimation", "SwimAnimation", "WalkAnimation", "ClimbAnimation", "FallAnimation"}) do
+        ava[v] = humdes[v]
+    end
+
+    -- Copiar acessórios
+    for _, v in pairs({"Hat", "Hair", "Back", "Face", "Front", "Neck", "Shoulders", "Waist"}) do
+        ava[v .. "Accessory"] = humdes[v .. "Accessory"]
+    end
+
+    -- Copiar acessórios em camadas (layered)
+    local layered = humdes:GetAccessories(false)
+    for i, accessory in pairs(layered) do
+        if accessory.AccessoryType and typeof(accessory.AccessoryType) == "EnumItem" then
+            accessory.AccessoryType = accessory.AccessoryType.Name
+        end
+        accessory.Order = i
+    end
+    ava.AccessoryBlob = layered
+
+    -- Copiar emotes
+    ava.Emotes = humdes:GetEmotes()
+
+    return ava
+end
+
+-- Função para carregar o avatar de um jogador com base no UserId
+local function LoadAvatarFromUserId(userid)
+    local success, humdes = pcall(function()
+        return Players:GetHumanoidDescriptionFromUserId(tonumber(userid))
+    end)
+    
+    if success and humdes then
+        local data = ExtractData(humdes)
+        ReplicatedStorage.FunctionConnections.NewAESaveAvatar:InvokeServer(data)
+        print("Avatar do UserId " .. userid .. " copiado com sucesso!")
+    else
+        warn("Erro ao carregar o avatar para o UserId: " .. userid)
+    end
+end
+
+-- Função para carregar o avatar de um jogador com base no Username
+local function LoadAvatarFromUsername(username)
+    local success, userId = pcall(function()
+        return Players:GetUserIdFromNameAsync(username)
+    end)
+    
+    if success and userId then
+        LoadAvatarFromUserId(userId)
+    else
+        warn("Erro ao encontrar o UserId para o Username: " .. username)
+    end
+end
+
+-- Criar a interface usando Rayfield
+local Window = Rayfield:CreateWindow({
+    Name = "❄️Meepcity V3❄️",
+    LoadingTitle = "Carregando...",
+    LoadingSubtitle = "Aguarde um momento...",
+})
+
+local Tab = Window:CreateTab("Avatar")
+
+-- Criar o Textbox para inserir o nome de usuário
+local LoadAvatarFromUsernameInput = Tab:CreateInput({
+    Name = "Carregar avatar por nickname",
+    CurrentValue = "",
+    PlaceholderText = "Insira o nickname",
+    RemoveTextAfterFocusLost = false,
+    Flag = "LoadAvatarUsername",
+    Callback = function(username)
+        if username and username ~= "" then
+            LoadAvatarFromUsername(username)
+        else
+            print("Por favor, insira um nome de usuário válido.")
+        end
+    end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Virar criança",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/zKyQLQ4w'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Virar adolescente",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/Ms6iJXpL'))()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Virar adulto",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/TYFqdwRN'))()
+   end,
+})
+
+-- Variável para controlar o estado do sono
+local isSleeping = false
+local animationId = "rbxassetid://2176786857"
+local animation = Instance.new("Animation")
+animation.AnimationId = animationId
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animationTrack
+
+-- Criar o botão de alternar sono
+local Button = Tab:CreateButton({
+    Name = "Alternar Sono", 
+    Callback = function()
+        -- Alternar o estado de sono
+        isSleeping = not isSleeping
+
+        local args = {
+            [1] = isSleeping, 
+            [2] = 1
+        }
+
+        if isSleeping then
+            -- Ativar animação de sono
+            if not animationTrack or animationTrack.IsPlaying == false then
+                animationTrack = humanoid:LoadAnimation(animation)
+                animationTrack:Play()
+            end
+            game:GetService("ReplicatedStorage").EventConnections.SetCharacterIsSleeping:FireServer(unpack(args))
+        else
+            -- Desativar animação de sono
+            if animationTrack and animationTrack.IsPlaying then
+                animationTrack:Stop()
+            end
+            args[1] = false
+            game:GetService("ReplicatedStorage").EventConnections.SetCharacterIsSleeping:FireServer(unpack(args))
+        end
+    end
+})
+
+local MainTab = Window:CreateTab("Teleport")
+local MainSection = MainTab:CreateSection("Teleport")
+
+local Button = MainTab:CreateButton({
+   Name = "Tp cafeteria",
+   Callback = function()
+      local args = {
+    [1] = 11,
+    [2] = {
+        ["DestinationVW"] = 11,
+        ["DestinationDoorId"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").FunctionConnections.RequestTeleportToUniverse:InvokeServer(unpack(args))
+
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Tp escola",
+   Callback = function()
+      local args = {
+    [1] = 4,
+    [2] = {
+        ["DestinationVW"] = 13,
+        ["DestinationDoorId"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").FunctionConnections.RequestTeleportToUniverse:InvokeServer(unpack(args))
+
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Tp pizzaria",
+   Callback = function()
+      local args = {
+    [1] = 3,
+    [2] = {
+        ["DestinationVW"] = 7,
+        ["DestinationDoorId"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").FunctionConnections.RequestTeleportToUniverse:InvokeServer(unpack(args))
+
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Tp sorveteria",
+   Callback = function()
+      local args = {
+    [1] = 10,
+    [2] = {
+        ["DestinationVW"] = 9,
+        ["DestinationDoorId"] = 1
+    }
+}
+
+game:GetService("ReplicatedStorage").FunctionConnections.RequestTeleportToUniverse:InvokeServer(unpack(args))
+
+   end,
+})
+
+local MainTab = Window:CreateTab("Outros")
+local MainSection = MainTab:CreateSection("Outros")
+
+local Button = MainTab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+      loadstring(game:HttpGet('htthttps://rawscripts.net/raw/Infinite-Yield_500'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Nameless Admin FE",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-Nameless-Admin-FE-11243'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Chat Bypass",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-Chat-bypass-idkw-24726'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Chat Bypass V2",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/AlgariBot/lua/refs/heads/Lua-Script-Executor/LocalNeverPatchedBypass.txt'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Fly (Mobile)",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Clone FE",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Rochips Universal",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-rochips-usefull-24163'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Haxker 666",
+   Callback = function()
+      loadstring(game:HttpGet('https://rawscripts.net/raw/Universal-Script-Haxker666-Script-hub-9666'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Anti Lag",
+   Callback = function()
+      loadstring(game:HttpGet('https://pastebin.com/raw/YbkYweS5'))()
+   end,
+})
+
+local Button = MainTab:CreateButton({
+   Name = "Shaders",
+   Callback = function()
+      loadstring(game:HttpGet('https://raw.githubusercontent.com/randomstring0/pshade-ultimate/refs/heads/main/src/cd.lua'))()
+   end,
+}) 
